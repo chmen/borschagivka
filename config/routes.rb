@@ -5,6 +5,7 @@ Rails.application.routes.draw do
         resources :records
       end
       resources :records
+      resources :projects
     end
   end
 

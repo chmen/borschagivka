@@ -1,5 +1,5 @@
 module Api
-  module v1
+  module V1
     class ProjectsController < ApplicationController
       before_action :authorize_access_request!, except: [:show, :index]
       before_action :set_project, only: [:show, :update, :destroy]
@@ -14,8 +14,19 @@ module Api
         render json: @project
       end
 
+      def create
+        binding.pry
+        @project = Project.new(project_params)
+        if @project.save
+
+          render json: @project
+        else
+          render json: @project.errors
+        end
+      end
+
       def update
-        if @project.update(projects_params)
+        if @project.update(project_params)
           render json: @project
         else
           render json: @project.errors, status: :unprocessable_entity
@@ -32,7 +43,7 @@ module Api
         @project = Project.find(params[:id])
       end
 
-      def project_params(params)
+      def project_params
         params.fetch(:project).permit(:title, :description, :stage)
       end
     end
