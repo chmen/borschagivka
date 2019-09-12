@@ -15,8 +15,8 @@ module Api
       end
 
       def create
-        binding.pry
         @project = Project.new(project_params)
+        binding.pry
         if @project.save
 
           render json: @project
@@ -44,7 +44,7 @@ module Api
       end
 
       def project_params
-        params.fetch(:project).permit(:title, :description, :stage)
+        params.require(:project).permit(:title, :description, :stage)
       end
     end
   end
