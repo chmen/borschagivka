@@ -16,7 +16,6 @@ module Api
 
       def create
         @project = Project.new(project_params)
-        binding.pry
         if @project.save
 
           render json: @project

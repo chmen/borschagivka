@@ -1,14 +1,27 @@
 <template>
   <div class="max-w-md m-auto py-10">
     <div class="text-red" v-if="error">{{ error }}</div>
-    <h3 class="font-mono font-regular text-3xl mb-4">Add a new project</h3>
+    <h3 class="font-mono font-regular text-3xl mb-4">Suggest a new project</h3>
     <form action="" @submit.prevent="addProject">
       <div class="mb-6">
-        <input class="input"
+        <label for="project_title" class="label">Title</label>
+        <input
+          id="project_title"
+          class="input"
           autofocus autocomplete="off"
           placeholder="Type an Project name"
           v-model="newProject.title" />
       </div>
+      <div class="md-6">
+        <label for="project_description" class="label">Description</label>
+        <input
+        id="project_description"
+        class="input"
+        autofocus autocomplete="off"
+        placeholder="Add description"
+        v-model="newProject.description" />
+      </div>
+
       <input type="submit" value="Add Project" class="font-sans font-bold px-4 rounded cursor-pointer no-underline bg-green-500 hover:bg-green-700 block w-full py-4 text-white items-center justify-center" />
 <!--       <input type="submit" value="Add Artist" class="font-sans font-bold px-4 rounded cursor-pointer no-underline bg-green hover:bg-green-dark block w-full py-4 text-white items-center justify-center" />
  -->
@@ -21,7 +34,7 @@
 
         <div class="flex items-center justify-between flex-wrap">
           <p class="block flex-1 font-mono font-semibold flex items-center ">
-            <svg class="fill-current text-indigo w-6 h-6 mr-2" viewBox="0 0 20 20" width="20" height="20"><title>project</title><path d="M15.75 8l-3.74-3.75a3.99 3.99 0 0 1 6.82-3.08A4 4 0 0 1 15.75 8zm-13.9 7.3l9.2-9.19 2.83 2.83-9.2 9.2-2.82-2.84zm-1.4 2.83l2.11-2.12 1.42 1.42-2.12 2.12-1.42-1.42zM10 15l2-2v7h-2v-5z"></path></svg>
+            <svg class="fill-current text-indigo w-6 h-6 mr-2" viewBox="0 0 20 20" width="20" height="20"><title>project</title></svg>
             {{ project.title }}
           </p>
 
@@ -74,7 +87,7 @@ export default {
       if (!value) {
         return
       }
-      this.$http.secured.post('/api/v1/projects/', { project: { title: this.newProject.title } })
+      this.$http.secured.post('/api/v1/projects/', { project: { title: this.newProject.title, description: this.newProject.description} })
 
         .then(response => {
           this.projects.push(response.data)
