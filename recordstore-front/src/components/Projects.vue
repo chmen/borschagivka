@@ -87,7 +87,7 @@ export default {
       if (!value) {
         return
       }
-      this.$http.secured.post('/api/v1/projects/', { project: { title: this.newProject.title, description: this.newProject.description} })
+      this.$http.secured.post('/api/v1/projects/', { project: { title: this.newProject.title, description: this.newProject.description } })
 
         .then(response => {
           this.projects.push(response.data)

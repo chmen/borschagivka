@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_28_070648) do
+ActiveRecord::Schema.define(version: 2019_09_23_115839) do
 
   create_table "artists", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "dictionary_items", force: :cascade do |t|
+    t.string "value"
+    t.string "dictionary_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

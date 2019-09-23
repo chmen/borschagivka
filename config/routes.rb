@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       end
       resources :records
       resources :projects
+      resources :dictionaries
     end
   end
 
